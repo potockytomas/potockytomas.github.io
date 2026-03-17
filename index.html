@@ -3,215 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tomáš Potocký | FBI UNIZA</title>
+    <title>Tomáš Potocký | Bezpečnostný manažér</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-body: #f8f9fa; /* Svetlé pozadie */
-            --bg-card: #ffffff; /* Biela karta */
-            --accent-main: #e07a5f; /* Terakotová */
-            --accent-sec: #81b29a; /* Šalviová zelená */
-            --accent-ter: #f2cc8f; /* Mustard žltá */
-            --text-primary: #3d405b; /* Tmavosivá pre text */
-            --text-secondary: #5f6368;
+            --primary: #2563eb;
+            --primary-light: #eff6ff;
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --bg: #f8fafc;
+            --white: #ffffff;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text-main); line-height: 1.6; padding: 40px 20px; }
+        
+        .container { max-width: 800px; margin: 0 auto; animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-primary);
-            line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            padding: 60px 20px;
+        header { text-align: center; background: var(--white); padding: 40px; border-radius: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 24px; }
+        .profile-icon { width: 80px; height: 80px; background: var(--primary); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; font-weight: 700; margin: 0 auto 15px; }
+        h1 { font-size: 2.2rem; margin-bottom: 5px; }
+        .tagline { color: var(--primary); font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+
+        section { background: var(--white); padding: 30px; border-radius: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); margin-bottom: 20px; }
+        h2 { font-size: 1.3rem; margin-bottom: 20px; color: var(--text-main); display: flex; align-items: center; gap: 12px; }
+        h2 i { color: var(--primary); }
+
+        /* Interaktívny Akordeón */
+        .accordion-item { border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 10px; overflow: hidden; transition: all 0.3s ease; }
+        .accordion-item:hover { border-color: var(--primary); }
+        
+        .accordion-header { 
+            width: 100%; padding: 15px 20px; background: #fff; border: none; outline: none;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; font-weight: 600; color: var(--text-main); font-size: 1rem;
         }
 
-        .wrapper {
-            max-width: 800px;
-            width: 100%;
-            animation: fadeIn 0.8s ease-in-out;
+        .accordion-header i.fa-chevron-down { font-size: 0.8rem; transition: transform 0.3s; }
+        .active .fa-chevron-down { transform: rotate(180deg); }
+
+        .accordion-content { 
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; background: #fcfcfd;
+            font-size: 0.9rem; color: var(--text-muted); border-top: 0 solid #eee;
         }
-
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .profile-img-container {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background-color: var(--accent-sec);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 2.5rem;
-            font-weight: 700;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        h1 { font-size: 2.5rem; font-weight: 700; color: var(--text-primary); }
-        .subtitle { color: var(--accent-main); font-weight: 600; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1.5px; }
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 25px;
-        }
-
-        section {
-            background: var(--bg-card);
-            padding: 35px;
-            border-radius: 16px;
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-        }
-
-        h2 { 
-            font-size: 1.4rem; 
-            margin-bottom: 20px; 
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        h2 i { color: var(--accent-main); }
-        h2.zameranie i { color: var(--accent-ter); }
-
-        p { margin-bottom: 15px; color: var(--text-secondary); }
-        strong { color: var(--text-primary); }
-
-        .subject-grid { 
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .subject-item { 
-            background: #fff;
-            padding: 8px 15px; 
-            border-radius: 8px; 
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            border-left: 3px solid;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-        }
-
-        /* Priradenie farieb pre predmety */
-        .item-mana { border-left-color: var(--accent-ter); }
-        .item-krim { border-left-color: var(--accent-main); }
-        .item-prev { border-left-color: var(--accent-ter); }
-        .item-tero { border-left-color: var(--accent-sec); }
-        .item-sluz { border-left-color: var(--accent-main); }
-        .item-ochr { border-left-color: var(--accent-ter); }
-
-        .contact-section {
-            text-align: center;
-            padding: 40px 20px;
-        }
+        .active + .accordion-content { max-height: 500px; padding: 20px; border-top-width: 1px; }
 
         .contact-btn {
-            display: inline-block;
-            background: var(--accent-sec);
-            color: white;
-            padding: 14px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 700;
-            margin-top: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(129, 178, 154, 0.3);
+            display: block; width: 100%; background: var(--primary); color: white; text-align: center;
+            padding: 18px; border-radius: 16px; text-decoration: none; font-weight: 700;
+            transition: transform 0.2s, background 0.2s; margin-top: 20px;
         }
+        .contact-btn:hover { background: #1d4ed8; transform: translateY(-2px); }
 
-        .contact-btn:hover {
-            transform: translateY(-2px);
-            background: #6a9c81;
-            box-shadow: 0 6px 15px rgba(129, 178, 154, 0.4);
-        }
+        footer { text-align: center; margin-top: 30px; font-size: 0.8rem; color: var(--text-muted); opacity: 0.7; }
 
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            opacity: 0.8;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        @media (max-width: 768px) {
-            .cards-container { grid-template-columns: 1fr; }
-            h1 { font-size: 2rem; }
-            section { padding: 25px; }
-        }
+        @media (max-width: 600px) { h1 { font-size: 1.8rem; } }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
+    <div class="container">
         <header>
-            <div class="profile-img-container">
-                <div class="profile-img">TP</div>
-                <div>
-                    <h1>Tomáš Potocký</h1>
-                    <p class="subtitle">Bezpečnostný manažment | FBI UNIZA</p>
-                </div>
-            </div>
+            <div class="profile-icon">TP</div>
+            <h1>Tomáš Potocký</h1>
+            <p class="tagline">Bezpečnostný manažment | FBI UNIZA</p>
         </header>
 
-        <div class="cards-container">
-            <section id="about">
-                <h2><i class="fas fa-user-graduate"></i> O mne</h2>
-                <p>
-                    Som študentom 3. ročníka na <strong>Fakulte bezpečnostného inžinierstva Žilinskej univerzity v Žiline</strong>.
-                </p>
-                <p>
-                    Aktuálne dokončujem bakalárske štúdium v programe <strong>Bezpečnostný manažment</strong>. Zaujímam sa o oblasť bezpečnosti, analýzu rizík a ochranu osôb a majetku.
-                </p>
-            </section>
+        <section id="about">
+            <h2><i class="fas fa-user-graduate"></i> O mne</h2>
+            <p>Som študentom 3. ročníka na <strong>Fakulte bezpečnostného inžinierstva</strong>. Zameriavam sa na komplexné riešenia ochrany osôb, majetku a informácií v súkromnom i verejnom sektore.</p>
+        </section>
 
-            <section id="education">
-                <h2 class="zameranie"><i class="fas fa-shield-alt"></i> Čomu sa venujem</h2>
-                <p>V rámci odborných predmetov získavam znalosti v týchto oblastiach:</p>
-                <div class="subject-grid">
-                    <div class="subject-item item-mana">Bezpečnostný manažment</div>
-                    <div class="subject-item item-krim">Kriminalistika</div>
-                    <div class="subject-item item-prev">Prevencia kriminality</div>
-                    <div class="subject-item item-tero">Ochrana proti terorizmu</div>
-                    <div class="subject-item item-sluz">Bezpečnostné služby</div>
-                    <div class="subject-item item-ochr">Vnútorná a vonkajšia ochrana</div>
+        <section id="expertise">
+            <h2><i class="fas fa-shield-halved"></i> Odborné okruhy</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Kliknite na oblasť pre detailné informácie o mojich kompetenciách:</p>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">Kriminológia <i class="fas fa-chevron-down"></i></button>
+                    <div class="accordion-content">
+                        Ovládam etiológiu a fenomenológiu kriminality vrátane kriminologického prognózovania a prevencie. Dokážem charakterizovať rôzne typy páchateľov a foriem kriminality (násilnú, ekonomickú, počítačovú či organizovanú) a rozumiem vplyvu prostredia na vznik delikvencie.
+                    </div>
                 </div>
-            </section>
-        </div>
 
-        <div class="contact-section">
-            <p>V prípade záujmu o spoluprácu ma môžete kontaktovať:</p>
-            <a href="mailto:potocky2@stud.uniza.sk" class="contact-btn">
-                <i class="fas fa-envelope"></i> potocky2@stud.uniza.sk
-            </a>
-        </div>
+                <div class="accordion-item">
+                    <button class="accordion-header">Manažment informačnej bezpečnosti <i class="fas fa-chevron-down"></i></button>
+                    <div class="accordion-content">
+                        Dokážem navrhnúť systém riadenia informačnej bezpečnosti (ISMS) podľa normy ISO/IEC 27001. Pripravujem dokumentáciu v súlade s legislatívou, napríklad so Zákonom o kybernetickej bezpečnosti.
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">Poplachové systémy <i class="fas fa-chevron-down"></i></button>
+                    <div class="accordion-content">
+                        Navrhujem efektívnu ochranu osôb a majetku s využitím aktívnych technických prvkov. Ovládam obsluhu systémov v komerčnej bezpečnosti aj v prostredí monitorovacích prijímacích centier.
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">Civilná ochrana <i class="fas fa-chevron-down"></i></button>
+                    <div class="accordion-content">
+                        Realizujem analýzu územia, plány ochrany obyvateľstva a evakuácie. Ovládam prostriedky individuálnej i kolektívnej ochrany a metódy odstraňovania následkov mimoriadnych udalostí.
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">Bodyguarding <i class="fas fa-chevron-down"></i></button>
+                    <div class="accordion-content">
+                        Orientujem sa v inštitucionálnom a právnom rámci ochrany osôb. Navrhujem organizačné a technické opatrenia na ochranu pred úmyselnými antropogénnymi hrozbami.
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">Trestné právo <i class="fas fa-chevron-down"></i></button>
+                    <div class="accordion-content">
+                        Disponujem teoretickými poznatkami z trestného práva hmotného a procesného. Rozumiem skutkovým podstatám trestných činov a rozdielom medzi priestupkovým a trestným konaním.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <a href="mailto:potocky2@stud.uniza.sk" class="contact-btn">
+            <i class="fas fa-paper-plane"></i> Napísať e-mail: potocky2@stud.uniza.sk
+        </a>
 
         <footer>
             &copy; 2026 Tomáš Potocký | FBI UNIZA
         </footer>
     </div>
 
+    <script>
+        // Skript pre funkčnosť rozklikávania
+        const headers = document.querySelectorAll('.accordion-header');
+        
+        headers.forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
 </body>
 </html>
